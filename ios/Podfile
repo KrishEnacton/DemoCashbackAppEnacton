@@ -1,0 +1,40 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '10.0'
+
+target 'DemoCashbackApp' do
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-lottie-splash-screen', :path => '../node_modules/react-native-lottie-splash-screen'
+ pod 'lottie-ios'
+
+  target 'DemoCashbackAppTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+  use_flipper!({ 'Flipper-Folly' => '2.3.0' })
+  post_install do |installer|
+    flipper_post_install(installer)
+  end
+end
+
+target 'DemoCashbackApp-tvOS' do
+  # Pods for DemoCashbackApp-tvOS
+
+  target 'DemoCashbackApp-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
