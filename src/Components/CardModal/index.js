@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Text, View, StyleSheet, Platform, Button, TouchableOpacity, ScrollView, Image } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Clipboard from '@react-native-clipboard/clipboard';
+import Toast, { DURATION } from 'react-native-easy-toast'
+import ToastTest from '../ToastTest';
 
 export default HeaderMenu = ({ ModalHandler, ModalData }) => {
-    //console.log("data:", ModalData);
+    let toastRef;
+    const coupenCopyHandler = (code) => {
+        Clipboard.setString(code);
+        toastRef.show("Code Copied");
+    }
+
     return (
         <View style={styles.rootView}>
             <View style={styles.containerView} >
+
                 <View style={styles.notch}></View>
                 <TouchableOpacity style={styles.close_btn} onPress={ModalHandler} >
                     <AntDesignIcon name="closecircleo" size={20} />
@@ -36,7 +42,9 @@ export default HeaderMenu = ({ ModalHandler, ModalData }) => {
                                 shadowOffset: { height: 3, width: 0.5 },
                                 shadowOpacity: 1, backgroundColor: '#ffe1d8', elevation: 5, marginRight: 10
                             }]}>
-                                <Text style={{ fontSize: 12, alignSelf: "center", color: "red", textAlignVertical: "center" }}>{ModalData?.code}</Text>
+                                <TouchableOpacity onPress={() => coupenCopyHandler(ModalData?.code)} >
+                                    <Text style={{ fontSize: 12, alignSelf: "center", color: "red", textAlignVertical: "center" }}>{ModalData?.code}</Text>
+                                </TouchableOpacity>
                             </View> :
                             null
                         }
@@ -45,6 +53,15 @@ export default HeaderMenu = ({ ModalHandler, ModalData }) => {
                     <TouchableOpacity style={styles.shop_now_btn}>
                         <Text style={{ color: 'white' }}>Shop Now</Text>
                     </TouchableOpacity>
+
+                    <Toast
+                        ref={(toast) => toastRef = toast}
+                        style={{ backgroundColor: '#F2AF5F' }}
+                        position='top'
+                        positionValue={200}
+                        opacity={1}
+                        textStyle={{ color: 'black' }}
+                    />
                 </View>
             </View>
         </View>
