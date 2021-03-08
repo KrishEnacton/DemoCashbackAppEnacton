@@ -6,9 +6,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 const winHeight = Dimensions.get('window').height
 const winWidth = Dimensions.get('window').width
 const headerHeight = (winHeight * 10) / 100;
-const _headerWidth = (winHeight * 45) / 100;
 const cardHeight = (winHeight * 10) / 100;
-
 
 
 export default CategoryDetail = ({ navigation, route }) => {
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
     },
     Box: {
         height: 130,
-        width: _headerWidth / 1.15,
+        width: winWidth / 1.7,
         backgroundColor: '#006b76',
         borderRadius: 10,
         justifyContent: "center",
