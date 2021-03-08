@@ -182,7 +182,7 @@ export default Home = ({ navigation }) => {
                                 renderItem={({ item, index }) => {
                                     return (
                                         <View>
-                                            <TouchableOpacity onPress={() => { }} style={[styles.rootView, { backgroundColor: COLORS_SETS[0][index] }]}>
+                                            <TouchableOpacity onPress={() => { navigation.navigate("StoreDetail", { item: item }); }} style={[styles.rootView, { backgroundColor: COLORS_SETS[0][index] }]}>
                                                 <View style={{ margin: 10, marginTop: 10 }}>
                                                     <View style={[styles.imageStyle, styles.imageContainer]} >
                                                         <Image

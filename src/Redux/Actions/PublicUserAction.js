@@ -66,3 +66,20 @@ export const getAllCategorySuccess = (data) => {
     }
 }
 
+export const getStoreDetailRequest = () => {
+    //console.log("ActionCalled:");
+    return {
+        type: allActions.STORE_DETAIL_REQUEST,
+    }
+}
+
+export const getStoreDetailSuccess = (data) => {
+    //console.log("CategoryData:", data);
+    return {
+        type: allActions.STORE_DETAIL_SUCCESS,
+        payload: data
+    }
+}
+
+
+

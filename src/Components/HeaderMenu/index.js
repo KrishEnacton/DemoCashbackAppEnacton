@@ -10,29 +10,30 @@ const ContainerHeight = (winHeight * 65) / 100
 export default HeaderMenu = ({ ModalHandler }) => {
     return (
         <View style={styles.headerView}>
-            <ScrollView>
 
-                <View style={styles.headerNotch} />
-                <TouchableOpacity style={{ alignSelf: "flex-end", marginRight: 5 }} onPress={ModalHandler} >
 
-                    <AntDesignIcon
-                        name="closecircle"
-                        size={20}
-                        color="#006b76"
-                    />
+            <View style={styles.headerNotch} />
+            <TouchableOpacity style={{ alignSelf: "flex-end", marginRight: 10 }} onPress={ModalHandler} >
 
+                <AntDesignIcon
+                    name="closecircle"
+                    size={20}
+                    color="#006b76"
+                />
+
+            </TouchableOpacity>
+
+            <Text style={{ alignSelf: "center", marginTop: 25, fontWeight: "bold" }}>Sign In or Join Now</Text>
+
+            <View style={{ flexDirection: "row", alignSelf: "center", marginTop: 20 }}>
+                <TouchableOpacity style={[styles.btnStyle, { backgroundColor: "#37d67a" }]}>
+                    <Text style={{ alignSelf: "center", color: "white", fontSize: 12 }} >Sign In</Text>
                 </TouchableOpacity>
-
-                <Text style={{ alignSelf: "center", marginTop: 25, fontWeight: "bold" }}>Sign In or Join Now</Text>
-
-                <View style={{ flexDirection: "row", alignSelf: "center", marginTop: 20 }}>
-                    <TouchableOpacity style={[styles.btnStyle, { backgroundColor: "#37d67a" }]}>
-                        <Text style={{ alignSelf: "center", color: "white", fontSize: 12 }} >Sign In</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.btnStyle, { backgroundColor: "#006b76" }]}>
-                        <Text style={{ alignSelf: "center", color: "white", fontSize: 12 }}>Sign Up</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={[styles.btnStyle, { backgroundColor: "#006b76" }]}>
+                    <Text style={{ alignSelf: "center", color: "white", fontSize: 12 }}>Sign Up</Text>
+                </TouchableOpacity>
+            </View>
+            <ScrollView style={{ marginTop: 15 }}>
 
                 <View style={{ margin: 25 }}>
 

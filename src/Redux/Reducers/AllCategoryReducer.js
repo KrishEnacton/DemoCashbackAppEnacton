@@ -1,5 +1,4 @@
 // import {} from 'react-redux';
-import { act } from 'react-test-renderer';
 import * as Actions from '../Actions';
 
 const initState = {
