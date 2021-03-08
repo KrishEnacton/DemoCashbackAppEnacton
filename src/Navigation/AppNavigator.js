@@ -6,9 +6,7 @@ import Home from '../Screens/Home';
 import Login from '../Screens/Login';
 import TabNavigation from './TabNavigation';
 import CategoryDetail from '../Screens/CategoryDetail'
-import { fromLeft } from 'react-navigation-transitions';
-import CardModal from '../Components/CardModal'
-
+import StoreDetail from '../Screens/StoreDetail';
 
 export default AppNavigator = () => {
     const Stack = createStackNavigator();
@@ -52,6 +50,13 @@ export default AppNavigator = () => {
                 <Stack.Screen
                     name="CategoryDetail"
                     component={CategoryDetail}
+                    options={{
+                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+                    }}
+                />
+                <Stack.Screen
+                    name="StoreDetail"
+                    component={StoreDetail}
                     options={{
                         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                     }}

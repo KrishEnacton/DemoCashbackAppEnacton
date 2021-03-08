@@ -181,22 +181,22 @@ export default Home = ({ navigation }) => {
                                 style={{ marginBottom: 10 }}
                                 renderItem={({ item, index }) => {
                                     return (
-                                        <View>
-                                            <TouchableOpacity onPress={() => { }} style={[styles.rootView, { backgroundColor: COLORS_SETS[0][index] }]}>
-                                                <View style={{ margin: 10, marginTop: 10 }}>
-                                                    <View style={[styles.imageStyle, styles.imageContainer]} >
-                                                        <Image
-                                                            style={styles.imageStyle}
-                                                            source={{
-                                                                uri: item?.logo,
-                                                            }}
-                                                        />
-                                                    </View>
-                                                    <Text style={styles.titleStyle} >{item?.name}</Text>
-                                                    <Text style={styles.offerStyle} >{item?.cashback_string}</Text>
+
+                                        <TouchableOpacity onPress={() => { navigation.navigate("StoreDetail", { item: item }); }} style={[styles.rootView, { backgroundColor: COLORS_SETS[0][index] }]}>
+                                            <View style={{ margin: 10, marginTop: 10 }}>
+                                                <View style={[styles.imageStyle, styles.imageContainer]} >
+                                                    <Image
+                                                        style={styles.imageStyle}
+                                                        source={{
+                                                            uri: item?.logo,
+                                                        }}
+                                                    />
                                                 </View>
-                                            </TouchableOpacity>
-                                        </View>
+                                                <Text style={styles.titleStyle} >{item?.name}</Text>
+                                                <Text style={styles.offerStyle} >{item?.cashback_string}</Text>
+                                            </View>
+                                        </TouchableOpacity>
+
                                         // <Card data={item?.name} ModalContent={ModalContentHandler} modalToggle={ModalHandler} allData={item} backgroundColor={COLORS_SETS[0][index]} />
                                     )
                                 }}

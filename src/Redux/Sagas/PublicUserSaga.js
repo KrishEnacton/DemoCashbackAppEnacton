@@ -1,6 +1,6 @@
 import { call, takeEvery, put, all } from 'redux-saga/effects';
 import * as allActions from '../Actions';
-import { getUserLoginSuccess, getAllCategorySuccess, getParentCategorySuccess } from '../Actions/PublicUserAction';
+import { getUserLoginSuccess, getAllCategorySuccess, getParentCategorySuccess, getStoreDetailSuccess } from '../Actions/PublicUserAction';
 import api from '../../Apis';
 
 export function* allWatcher() {
@@ -8,18 +8,12 @@ export function* allWatcher() {
         takeEvery(allActions.PUBLIC_USER_API, getApiData),
         takeEvery(allActions.PUBLIC_USER_STORES, getStoreApiData),
         takeEvery(allActions.USER_LOGIN_REQUEST, getUserLoginRequest_saga),
-        takeEvery(allActions.ALL_CATEGORY_REQUEST, getCategoryAction),
+        takeEvery(allActions.ALL_CATEGORY_REQUEST, getCategoryRequest),
+        takeEvery(allActions.STORE_DETAIL_REQUEST, getStoreDetailRequest),
     ])
 }
 
 //Saga-1 Start
-export function* getAction() {
-    try {
-        yield takeEvery(allActions.PUBLIC_USER_API, getApiData);
-    } catch (e) {
-        console.log("Error : ", e);
-    }
-}
 
 function* getApiData() {
     try {
@@ -39,14 +33,6 @@ const getApiDataFun = () => {
 //Saga-1 End
 
 //Saga-2 Start
-export function* getStoreAction() {
-    try {
-        //yield console.log("StoreSaga");
-        yield takeEvery(allActions.PUBLIC_USER_STORES, getStoreApiData);
-    } catch (e) {
-        console.log("Error : ", e);
-    }
-}
 
 function* getStoreApiData() {
     try {
@@ -66,13 +52,6 @@ const getStoreApiDataFun = () => {
 //Saga-2 End
 
 //Saga-3 Start
-export function* getUserLoginAction() {
-    try {
-        yield takeEvery(allActions.USER_LOGIN_REQUEST, getUserLoginRequest_saga);
-    } catch (e) {
-        console.log("Error : ", e);
-    }
-}
 
 function* getUserLoginRequest_saga(data) {
     try {
@@ -99,14 +78,7 @@ const getToken = (payload) => {
 //Saga-3 End
 
 //Saga-4 Start
-export function* getCategoryAction() {
-    try {
-        //yield console.log("StoreSaga");
-        yield takeEvery(allActions.ALL_CATEGORY_REQUEST, getCategoryRequest);
-    } catch (e) {
-        console.log("Error : ", e);
-    }
-}
+
 
 function* getCategoryRequest() {
     try {
@@ -135,3 +107,22 @@ const getAllCategory = () => {
     //return "Krishna";
 }
 //Saga-4 End
+
+//Saga-5 Start
+
+function* getStoreDetailRequest() {
+    try {
+        const res = yield call(getStoreDetail);
+        yield put(getStoreDetailSuccess(res));
+    } catch (e) {
+        console.log("Error:", e);
+    }
+}
+
+const getStoreDetail = () => {
+    const data = api.get("/public/app/stores").then((data) => {
+        return data.data;
+    })
+    return data;
+}
+//Saga-5 End
