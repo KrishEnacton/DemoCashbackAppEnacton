@@ -42,7 +42,7 @@ class StoreDetail extends React.Component {
     }
 
     filterData = () => {
-        console.log("Called");
+        //console.log("Called");
         for (const item in this.props.storeDetail.data) {
             for (const val of this.props.storeDetail.data[item]) {
                 if (val.id == this.state.item?.id) {
@@ -55,7 +55,7 @@ class StoreDetail extends React.Component {
     }
 
     render() {
-        console.log("Data:", this.props);
+        console.log("Data:", this.state.data);
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flexDirection: "row", backgroundColor: "#37d67a", alignItems: "center" }} >
@@ -102,15 +102,35 @@ class StoreDetail extends React.Component {
                         <Text style={{ textAlign: "center", color: "white" }}>Shop Now</Text>
                     </TouchableOpacity>
                     <View style={{ height: 30, flexDirection: "row", marginHorizontal: 10 }}>
-                        <View style={{ flex: 0.5, alignSelf: "center", color: "white" }}>
-                            <Text>How It Works</Text>
+                        <View style={{ flex: 0.5, alignSelf: "center", }}>
+                            <Text style={{ color: "white" }}>How It Works</Text>
                         </View>
                         <View style={{ flex: 0.5, alignSelf: "center" }}>
                             <Text style={{ alignSelf: "flex-end", color: "white" }} >Terms & Conditions</Text>
                         </View>
                     </View>
-                </View>
 
+                </View>
+                <View style={styles.coupenContainer}>
+                    <View style={styles.coupenInnerView} >
+                        <Text>Tracked Within</Text>
+                        <Text>{this.state.data.confirm_duration}</Text>
+                    </View>
+                    <View style={styles.coupenInnerView}>
+                        <Text>Paid Within</Text>
+                        <Text>{this.state.data?.confirm_days?.slice(0, -8)}</Text>
+                    </View>
+                    <View style={styles.coupenInnerView} >
+                        <Text>Missing Cashback</Text>
+                        {this.state.data == "" ?
+                            <Text>Loading...</Text> :
+                            this.state.data.is_claimable ?
+                                <Text>Allowed ✔️</Text> :
+                                <Text>Not Allowed</Text>
+                        }
+
+                    </View>
+                </View>
             </View>
         )
     }
@@ -139,7 +159,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         top: 0 - (headerHeight / 1.2),
         borderRadius: 10,
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        // back
     },
     imgView: {
         height: 60,
@@ -148,5 +169,17 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderRadius: 10,
         marginTop: 10
+    },
+    coupenContainer: {
+        flexDirection: "row",
+        top: 0 - (headerHeight / 1.2),
+        marginTop: 10,
+        alignItems: "center"
+    },
+    coupenInnerView: {
+        flex: 1,
+        alignItems: "center",
+        borderRightColor: "grey",
+        borderRightWidth: 1
     }
 })

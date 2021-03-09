@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getUserLoginRequest } from '../../Redux/Actions/PublicUserAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
@@ -17,7 +18,7 @@ const _perTopHeight = (height * 15) / 100;
 const perLoginConatinerHeight = (height * 6.5) / 100;
 const perLoginConatinerWidth = (width * 70) / 100;
 
-
+let toastRef;
 class Login extends React.Component {
 
     constructor(props) {
@@ -25,7 +26,7 @@ class Login extends React.Component {
         this.state = {
             username: "",
             password: "",
-            isSecure: true
+            isSecure: true,
         }
     }
 
@@ -62,6 +63,7 @@ class Login extends React.Component {
             function (result) {
                 if (result.isCancelled) {
                     console.log("Login cancelled");
+                    toastRef.show("Login cancelled");
                 } else {
                     AccessToken.getCurrentAccessToken().then(
                         (data) => {
@@ -190,6 +192,14 @@ class Login extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    <Toast
+                        ref={(toast) => toastRef = toast}
+                        style={{ backgroundColor: '#303030' }}
+                        position='bottom'
+                        positionValue={80}
+                        opacity={1}
+                        textStyle={{ color: 'white' }}
+                    />
                 </View>
             </KeyboardAwareScrollView>
         )
