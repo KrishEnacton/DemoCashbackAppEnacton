@@ -91,8 +91,6 @@ class StoreDetail extends React.Component {
                                 style={{ height: "100%", width: "100%", borderRadius: 10 }}
                             />
                         }
-
-
                     </View>
                     <View style={{ alignSelf: "center" }}>
                         {this.state.data == "" ?

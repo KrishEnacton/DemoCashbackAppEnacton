@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DemoCashbackApp</string>
+    <string name="facebook_app_id">448815763019061</string>
+    <string name="fb_login_protocol_scheme">fb448815763019061</string>
 </resources>

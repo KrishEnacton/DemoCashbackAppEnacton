@@ -7,6 +7,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { connect } from 'react-redux';
 import { getUserLoginRequest } from '../../Redux/Actions/PublicUserAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
@@ -56,6 +57,35 @@ class Login extends React.Component {
         }
     };
 
+    FBLogin = () => {
+        LoginManager.logInWithPermissions(["public_profile", "email"]).then(
+            function (result) {
+                if (result.isCancelled) {
+                    console.log("Login cancelled");
+                } else {
+                    AccessToken.getCurrentAccessToken().then(
+                        (data) => {
+                            //console.log(data.accessToken.toString());
+
+                            fetch('https://graph.facebook.com/v2.5/me?fields=email,first_name,last_name,friends&access_token=' + data.accessToken.toString())
+                                .then((res) => {
+                                    return res.json();
+                                }).then((data) => {
+                                    console.log("Data:", data);
+                                }).catch((e) => {
+                                    console.log("Error:", e);
+
+                                });
+                        }
+                    )
+                }
+            },
+            function (error) {
+                console.log("Login fail with error: " + error);
+            }
+        );
+    }
+
     render() {
         return (
             <KeyboardAwareScrollView enableOnAndroid={true} extraHeight={_perTopHeight} >
@@ -82,7 +112,7 @@ class Login extends React.Component {
                                     <Text style={{ fontWeight: "bold", fontSize: 12 }} >Login With</Text>
                                 </View>
                                 <View style={styles.iconRootView}>
-                                    <TouchableOpacity style={styles.iconContainer} >
+                                    <TouchableOpacity style={styles.iconContainer} onPress={this.FBLogin} >
                                         <Image
                                             source={AppImages.facebook_sign_in_icon}
                                             style={{ height: 18, width: 9, alignSelf: "center" }}
