@@ -13,7 +13,7 @@ const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
 const perBottomHeight = (height * 70) / 100;
 const perTopHeight = (height * 30) / 100;
-const _perTopHeight = (height * 10) / 100;
+const _perTopHeight = (height * 15) / 100;
 const perLoginConatinerHeight = (height * 6.5) / 100;
 const perLoginConatinerWidth = (width * 70) / 100;
 
