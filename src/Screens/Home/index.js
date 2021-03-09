@@ -170,7 +170,7 @@ export default Home = ({ navigation }) => {
                     {/* <Button onPress={defaultStore} title="Click" /> */}
                     <HomeMain categoryTitle="Stores" api={apiDataStores} getData={getStoreDataById} />
 
-                    <View style={{ height: 140, width: "100%" }}>
+                    <View style={{ height: 145, width: "100%" }}>
 
                         {
                             state.loader ? <CardLoaders /> : <FlatList
@@ -192,8 +192,8 @@ export default Home = ({ navigation }) => {
                                                         }}
                                                     />
                                                 </View>
-                                                <Text style={styles.titleStyle} >{item?.name}</Text>
-                                                <Text style={styles.offerStyle} >{item?.cashback_string}</Text>
+                                                <Text numberOfLines={1} style={styles.titleStyle} >{item?.name}</Text>
+                                                <Text numberOfLines={1} style={styles.offerStyle} >{item?.cashback_string}</Text>
                                             </View>
                                         </TouchableOpacity>
 
@@ -205,7 +205,7 @@ export default Home = ({ navigation }) => {
                     </View>
 
                     <HomeMain categoryTitle="View Offers By Categories" api={apiDataOffers} getData={getOfferDataById} />
-                    <View style={{ height: 140, width: "100%" }}>
+                    <View style={{ height: 145, width: "100%" }}>
                         {
                             state.loader ? <CardLoaders /> : <FlatList
                                 horizontal
@@ -224,7 +224,7 @@ export default Home = ({ navigation }) => {
                     </View>
 
                     <HomeMain categoryTitle="Deals" api={apiDataDeals} getData={getDealDataById} />
-                    <View style={{ height: 140, width: "100%" }}>
+                    <View style={{ height: 145, width: "100%" }}>
                         {
                             state.loader ? <CardLoaders /> : <FlatList
                                 horizontal
@@ -300,10 +300,10 @@ const styles = StyleSheet.create({
     },
     offerStyle: {
         color: "red",
-        fontSize: 12
+        fontSize: 11
     },
     rootView: {
-        height: 120,
+        height: 125,
         width: 180,
         borderRadius: 10,
         marginRight: 10,

@@ -36,7 +36,7 @@ export default Card = ({ data, allData, backgroundColor, modalToggle, ModalConte
 
 const styles = StyleSheet.create({
     rootView: {
-        height: 120,
+        height: 125,
         width: 180,
         borderRadius: 10,
         marginRight: 10,
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     },
     offerStyle: {
         color: "red",
-        fontSize: 12
+        fontSize: 11
     }
 })

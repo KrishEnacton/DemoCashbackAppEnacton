@@ -12,7 +12,7 @@ export default CardLoader = () => {
             style={{ marginBottom: 10 }}
             renderItem={({ item, index }) => {
                 return (
-                    <View style={{ backgroundColor: "white", height: 130, width: 170, borderRadius: 10, marginRight: 10, paddingTop: 5 }}>
+                    <View style={{ backgroundColor: "white", height: 120, width: 180, borderRadius: 10, marginRight: 10, paddingTop: 5 }}>
                         <ContentLoader
                             speed={2}
                             width={140}
