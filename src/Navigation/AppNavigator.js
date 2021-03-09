@@ -7,6 +7,7 @@ import Login from '../Screens/Login';
 import TabNavigation from './TabNavigation';
 import CategoryDetail from '../Screens/CategoryDetail'
 import StoreDetail from '../Screens/StoreDetail';
+import Search from '../Screens/Search';
 
 export default AppNavigator = () => {
     const Stack = createStackNavigator();
@@ -57,6 +58,13 @@ export default AppNavigator = () => {
                 <Stack.Screen
                     name="StoreDetail"
                     component={StoreDetail}
+                    options={{
+                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+                    }}
+                />
+                <Stack.Screen
+                    name="Search"
+                    component={Search}
                     options={{
                         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                     }}

@@ -20,7 +20,7 @@ const perSearchHeight = (height * 5) / 100;
 
 //const StatusBarHeight = insets.top();
 
-export default Header = ({ animatedValue, ModalHandler, ModalContent }) => {
+export default Header = ({ animatedValue, ModalHandler, ModalContent, navigation }) => {
     //console.log("StatusBar Height:", StatusBarHeight);
     const insets = useSafeAreaInsets();
     const headerOpacity = animatedValue.interpolate({
@@ -62,7 +62,7 @@ export default Header = ({ animatedValue, ModalHandler, ModalContent }) => {
                         </View>
                     </Animated.View>
                     <Animated.View style={[styles.btnSearch, { opacity: headerOpacity }]}>
-                        <TouchableOpacity style={styles.btnTouchableSearch} >
+                        <TouchableOpacity style={styles.btnTouchableSearch} onPress={() => navigation.navigate("Search")} >
                             <Text style={styles.txtSearch}>Search Cashback, Stores, Categories</Text>
                             <View style={{ flex: 1 }}>
                                 <FeatherIcon

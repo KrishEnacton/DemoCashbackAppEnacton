@@ -131,7 +131,7 @@ export default Home = ({ navigation }) => {
                     null
             }
 
-            <Header animatedValue={offset} ModalHandler={ModalHandler} ModalContent={ModalContentHandler} />
+            <Header animatedValue={offset} ModalHandler={ModalHandler} ModalContent={ModalContentHandler} navigation={navigation} />
 
             <ScrollView
                 scrollEventThrottle={16}
@@ -151,7 +151,7 @@ export default Home = ({ navigation }) => {
                 bouncesZoom={false}
             >
                 <View style={styles.viewHeader}>
-                    <TouchableOpacity style={styles.btnTouchableSearch} >
+                    <TouchableOpacity style={styles.btnTouchableSearch} onPress={() => navigation.navigate("Search")} >
                         <Text style={styles.txtSearch}>Search Cashback, Stores, Categories</Text>
                         <View style={{ flex: 1, alignItems: "flex-end", paddingRight: 15 }}>
                             <FeatherIcon

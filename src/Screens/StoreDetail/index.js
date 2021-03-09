@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { getStoreDetailRequest } from '../../Redux/Actions/PublicUserAction';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { SafeAreaProvider, useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import StoreDetailLoader, { CashbackLoader } from '../../Components/StoreDetailLoader';
 
 
@@ -40,6 +41,7 @@ class StoreDetail extends React.Component {
             this.filterData()
         }
     }
+    //insets = useSafeAreaInsets();
 
     filterData = () => {
         //console.log("Called");
@@ -55,10 +57,11 @@ class StoreDetail extends React.Component {
     }
 
     render() {
+
         console.log("Data:", this.state.data);
         return (
             <View style={{ flex: 1 }}>
-                <View style={{ flexDirection: "row", backgroundColor: "#37d67a", alignItems: "center" }} >
+                <SafeAreaView style={{ flexDirection: "row", backgroundColor: "#37d67a", alignItems: "center" }} >
                     <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
                         <FeatherIcon
                             name="chevron-left"
@@ -68,7 +71,10 @@ class StoreDetail extends React.Component {
                         />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: "center" }} >
-                        <Text>{this.state.data?.name}</Text>
+                        {this.state.data == "" ?
+                            <CashbackLoader /> :
+                            <Text>{this.state.data?.name}</Text>
+                        }
                     </View>
                     <TouchableOpacity onPress={() => { }}>
                         <FeatherIcon
@@ -78,8 +84,8 @@ class StoreDetail extends React.Component {
                             style={{ margin: 10 }}
                         />
                     </TouchableOpacity>
-                </View>
-                <View style={{ backgroundColor: "#37d67a", height: headerHeight, width: "100%", borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }}></View>
+                </SafeAreaView>
+                <View style={{ backgroundColor: "#37d67a", height: 60, width: "100%", borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }}></View>
                 <View style={styles.headerCard}>
                     <View style={styles.imgView}>
                         {this.state.data == "" ?
@@ -88,7 +94,7 @@ class StoreDetail extends React.Component {
                                 source={{
                                     uri: this.state.data?.logo
                                 }}
-                                style={{ height: "100%", width: "100%", borderRadius: 10 }}
+                                style={{ height: "99%", width: "99%", borderRadius: 10, alignSelf: "center" }}
                             />
                         }
                     </View>
@@ -114,19 +120,19 @@ class StoreDetail extends React.Component {
                 <View style={styles.coupenContainer}>
                     <View style={styles.coupenInnerView} >
                         <Text>Tracked Within</Text>
-                        <Text>{this.state.data.confirm_duration}</Text>
+                        <Text style={{ color: "grey" }}>{this.state.data.confirm_duration}</Text>
                     </View>
                     <View style={styles.coupenInnerView}>
                         <Text>Paid Within</Text>
-                        <Text>{this.state.data?.confirm_days?.slice(0, -8)}</Text>
+                        <Text style={{ color: "grey" }}>{this.state.data?.confirm_days?.slice(0, -8)}</Text>
                     </View>
                     <View style={styles.coupenInnerView} >
                         <Text>Missing Cashback</Text>
                         {this.state.data == "" ?
-                            <Text>Loading...</Text> :
+                            <Text style={{ color: "grey" }}>Loading...</Text> :
                             this.state.data.is_claimable ?
-                                <Text>Allowed ✔️</Text> :
-                                <Text>Not Allowed</Text>
+                                <Text style={{ color: "grey" }} >Allowed ✔️</Text> :
+                                <Text style={{ color: "red" }}>Not Allowed</Text>
                         }
 
                     </View>
@@ -157,7 +163,7 @@ const styles = StyleSheet.create({
         height: headerHeight + 50,
         width: (winWidth / 1.2),
         alignSelf: "center",
-        top: 0 - (headerHeight / 1.2),
+        top: 0 - (headerHeight / 1.3),
         borderRadius: 10,
         justifyContent: "space-evenly",
         // back
@@ -168,11 +174,12 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         alignSelf: "center",
         borderRadius: 10,
-        marginTop: 10
+        marginTop: 10,
+
     },
     coupenContainer: {
         flexDirection: "row",
-        top: 0 - (headerHeight / 1.2),
+        top: 0 - (headerHeight / 1.3),
         marginTop: 10,
         alignItems: "center"
     },
