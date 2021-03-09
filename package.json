@@ -24,6 +24,7 @@
     "react-native": "0.63.4",
     "react-native-content-loader": "^0.1.6",
     "react-native-easy-toast": "^2.0.0",
+    "react-native-fbsdk": "^3.0.0",
     "react-native-gesture-handler": "^1.10.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-lottie-splash-screen": "^0.1.12",

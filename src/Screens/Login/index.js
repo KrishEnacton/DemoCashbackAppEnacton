@@ -7,16 +7,18 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { connect } from 'react-redux';
 import { getUserLoginRequest } from '../../Redux/Actions/PublicUserAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
 const perBottomHeight = (height * 70) / 100;
 const perTopHeight = (height * 30) / 100;
-const _perTopHeight = (height * 10) / 100;
+const _perTopHeight = (height * 15) / 100;
 const perLoginConatinerHeight = (height * 6.5) / 100;
 const perLoginConatinerWidth = (width * 70) / 100;
 
-
+let toastRef;
 class Login extends React.Component {
 
     constructor(props) {
@@ -24,7 +26,7 @@ class Login extends React.Component {
         this.state = {
             username: "",
             password: "",
-            isSecure: true
+            isSecure: true,
         }
     }
 
@@ -56,6 +58,36 @@ class Login extends React.Component {
         }
     };
 
+    FBLogin = () => {
+        LoginManager.logInWithPermissions(["public_profile", "email"]).then(
+            function (result) {
+                if (result.isCancelled) {
+                    console.log("Login cancelled");
+                    toastRef.show("Login cancelled");
+                } else {
+                    AccessToken.getCurrentAccessToken().then(
+                        (data) => {
+                            //console.log(data.accessToken.toString());
+
+                            fetch('https://graph.facebook.com/v2.5/me?fields=email,first_name,last_name,friends&access_token=' + data.accessToken.toString())
+                                .then((res) => {
+                                    return res.json();
+                                }).then((data) => {
+                                    console.log("Data:", data);
+                                }).catch((e) => {
+                                    console.log("Error:", e);
+
+                                });
+                        }
+                    )
+                }
+            },
+            function (error) {
+                console.log("Login fail with error: " + error);
+            }
+        );
+    }
+
     render() {
         return (
             <KeyboardAwareScrollView enableOnAndroid={true} extraHeight={_perTopHeight} >
@@ -82,7 +114,7 @@ class Login extends React.Component {
                                     <Text style={{ fontWeight: "bold", fontSize: 12 }} >Login With</Text>
                                 </View>
                                 <View style={styles.iconRootView}>
-                                    <TouchableOpacity style={styles.iconContainer} >
+                                    <TouchableOpacity style={styles.iconContainer} onPress={this.FBLogin} >
                                         <Image
                                             source={AppImages.facebook_sign_in_icon}
                                             style={{ height: 18, width: 9, alignSelf: "center" }}
@@ -160,6 +192,14 @@ class Login extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    <Toast
+                        ref={(toast) => toastRef = toast}
+                        style={{ backgroundColor: '#303030' }}
+                        position='bottom'
+                        positionValue={80}
+                        opacity={1}
+                        textStyle={{ color: 'white' }}
+                    />
                 </View>
             </KeyboardAwareScrollView>
         )

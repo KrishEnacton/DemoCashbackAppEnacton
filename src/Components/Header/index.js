@@ -16,6 +16,7 @@ const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
 const perHeight = (height * 15) / 100;
 const perRadius = (height * 30) / 100;
+const perSearchHeight = (height * 5) / 100;
 
 //const StatusBarHeight = insets.top();
 
@@ -56,7 +57,10 @@ export default Header = ({ animatedValue, ModalHandler, ModalContent }) => {
                 <View style={{ flex: 1, height: "100%", justifyContent: "center" }}>
                     <Animated.View style={{ position: 'absolute', paddingLeft: 10, }}>
                         <Text style={{ fontSize: 12, color: "white" }} > Welcome to </Text>
-                        <Text style={styles.txtTitle} > MultiCashBack </Text>
+                        <View style={{ width: 100 }}>
+
+                            <Text style={styles.txtTitle} > MultiCashBack </Text>
+                        </View>
                     </Animated.View>
                     <Animated.View style={[styles.btnSearch, { opacity: headerOpacity }]}>
                         <TouchableOpacity style={styles.btnTouchableSearch} >
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
     },
     btnTouchableSearch: {
         backgroundColor: "white",
-        height: "100%",
+        height: perSearchHeight,
         borderRadius: 10,
         //justifyContent: "center",
         flexDirection: "row",
@@ -121,9 +125,9 @@ const styles = StyleSheet.create({
     txtTitle: {
         opacity: 1,
         fontWeight: 'bold',
-        color: "white"
+        color: "white",
         //position: "absolute",
-
+        //backgroundColor: "black"
         //opacity: 0
     },
     txtSearch: {

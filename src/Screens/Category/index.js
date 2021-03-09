@@ -71,7 +71,7 @@ export default Category = ({ navigation }) => {
                 data={stateParentData}
                 horizontal
                 maxToRenderPerBatch={10}
-                showsHorizontalScrollIndicator={true}
+                showsHorizontalScrollIndicator={false}
                 renderItem={renderItem}
             />
         </View>

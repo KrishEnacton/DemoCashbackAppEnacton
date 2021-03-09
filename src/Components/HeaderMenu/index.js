@@ -33,7 +33,7 @@ export default HeaderMenu = ({ ModalHandler }) => {
                     <Text style={{ alignSelf: "center", color: "white", fontSize: 12 }}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
-            <ScrollView style={{ marginTop: 15 }}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: 15 }}>
 
                 <View style={{ margin: 25 }}>
 

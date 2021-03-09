@@ -12,7 +12,7 @@ export default App = () => {
         setTimeout(() => {
 
             SplashScreen.hide(); // here
-        }, 2000);
+        }, 3000);
     }, []);
 
     return (
