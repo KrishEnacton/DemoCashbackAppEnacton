@@ -5,6 +5,8 @@
 #import <React/RCTRootView.h>
 #import "RNSplashScreen.h"
 #import "DemoCashbackApp-Swift.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -63,7 +65,19 @@ static void InitializeFlipper(UIApplication *application) {
   
   
   return YES;
+  
+  
 }
+
+- (BOOL)application:(UIApplication *)application
+  openURL:(NSURL *)url
+  options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+  {
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                  openURL:url
+                                                  options:options];
+  return YES;
+  }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {

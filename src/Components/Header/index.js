@@ -57,8 +57,7 @@ export default Header = ({ animatedValue, ModalHandler, ModalContent }) => {
                 <View style={{ flex: 1, height: "100%", justifyContent: "center" }}>
                     <Animated.View style={{ position: 'absolute', paddingLeft: 10, }}>
                         <Text style={{ fontSize: 12, color: "white" }} > Welcome to </Text>
-                        <View style={{ width: 100 }}>
-
+                        <View style={{ width: 150 }}>
                             <Text style={styles.txtTitle} > MultiCashBack </Text>
                         </View>
                     </Animated.View>
