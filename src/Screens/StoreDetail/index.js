@@ -61,7 +61,7 @@ class StoreDetail extends React.Component {
         console.log("Data:", this.state.data);
         return (
             <View style={{ flex: 1 }}>
-                <SafeAreaView style={{ flexDirection: "row", backgroundColor: "#37d67a", alignItems: "center" }} >
+                <SafeAreaView style={{ flexDirection: "row", backgroundColor: "#37d67a", alignItems: "center", paddingBottom: 30 }} >
                     <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
                         <FeatherIcon
                             name="chevron-left"

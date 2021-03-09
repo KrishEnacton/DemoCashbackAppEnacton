@@ -17,7 +17,7 @@ export default Card = ({ data, allData, backgroundColor, modalToggle, ModalConte
     return (
         <>
             <TouchableOpacity onPress={() => { modalToggle(); ModalContent("CardModel"); detailsHandler(allData); }} style={[styles.rootView, { backgroundColor: backgroundColor }]}>
-                <View style={{ margin: 10, marginTop: 10 }}>
+                <View style={{ margin: 10, marginTop: 7 }}>
                     <View style={[styles.imageStyle, styles.imageContainer]} >
                         <Image
                             style={styles.imageStyle}
@@ -37,10 +37,10 @@ export default Card = ({ data, allData, backgroundColor, modalToggle, ModalConte
 const styles = StyleSheet.create({
     rootView: {
         height: 120,
-        width: 170,
+        width: 180,
         borderRadius: 10,
         marginRight: 10,
-        paddingTop: 5,
+        paddingTop: 3,
         // elevation: 1,
     },
     imageContainer: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     titleStyle: {
         fontWeight: "bold",
-        marginBottom: 5
+        marginBottom: 3
     },
     offerStyle: {
         color: "red",

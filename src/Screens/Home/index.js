@@ -304,10 +304,10 @@ const styles = StyleSheet.create({
     },
     rootView: {
         height: 120,
-        width: 170,
+        width: 180,
         borderRadius: 10,
         marginRight: 10,
-        paddingTop: 5,
+        paddingTop: 3,
         // elevation: 1,
     },
 })
