@@ -107,6 +107,7 @@ class Login extends React.Component {
             const userInfo = await GoogleSignin.signIn();
             this.setState({ userInfo });
             console.log("UserInfo:", this.state.userInfo)
+            this.setState({ username: this.state.userInfo.user.email })
         } catch (error) {
             console.log("Error:", error);
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -179,7 +180,7 @@ class Login extends React.Component {
                             <Text>Email</Text>
                         </View>
                         <View style={[styles.input_text, { justifyContent: "center", }]}>
-                            <TextInput onChangeText={(data) => this.state.username = data} style={{ marginLeft: 10, }} />
+                            <TextInput value={this.state.username} onChangeText={(data) => this.state.username = data} style={{ marginLeft: 10, }} />
                         </View>
                         <View style={{ marginLeft: 40, marginTop: 10 }}>
                             <Text>Password</Text>
