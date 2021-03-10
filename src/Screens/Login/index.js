@@ -8,7 +8,12 @@ import { connect } from 'react-redux';
 import { getUserLoginRequest } from '../../Redux/Actions/PublicUserAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
+import {
+    GoogleSignin,
+    GoogleSigninButton,
+    statusCodes,
+} from '@react-native-google-signin/google-signin';
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
@@ -27,8 +32,14 @@ class Login extends React.Component {
             username: "",
             password: "",
             isSecure: true,
+            userInfo: {}
         }
+        GoogleSignin.configure({
+            webClientId: '136514478740-6rfprqcgcqantltl7mv8mj30u4j1mf97.apps.googleusercontent.com'
+        });
     }
+
+
 
     signInHandler = () => {
         const obj = {
@@ -88,6 +99,28 @@ class Login extends React.Component {
         );
     }
 
+    signIn = async () => {
+
+        try {
+            console.log("Hello12");
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            this.setState({ userInfo });
+            console.log("UserInfo:", this.state.userInfo)
+        } catch (error) {
+            console.log("Error:", error);
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                // user cancelled the login flow
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                // operation (e.g. sign in) is in progress already
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                // play services not available or outdated
+            } else {
+                // some other error happened
+            }
+        }
+    };
+
     render() {
         return (
             <KeyboardAwareScrollView enableOnAndroid={true} extraHeight={_perTopHeight} >
@@ -120,7 +153,7 @@ class Login extends React.Component {
                                             style={{ height: 18, width: 9, alignSelf: "center" }}
                                         />
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.iconContainer} >
+                                    <TouchableOpacity style={styles.iconContainer} onPress={this.signIn} >
                                         <Image
                                             source={AppImages.google_sign_in_icon}
                                             style={{ height: 18, width: 17, alignSelf: "center" }}

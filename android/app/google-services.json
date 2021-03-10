@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "136514478740",
+    "project_id": "democashbackenactonapp",
+    "storage_bucket": "democashbackenactonapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136514478740:android:a32faa2b82bbed479a0a81",
+        "android_client_info": {
+          "package_name": "com.democashbackapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136514478740-q4a494p3kss2iorlcksdsl480gmv106r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.democashbackapp",
+            "certificate_hash": "c62c63bb2d8dd56e61cd819903c7c8082fd42c0f"
+          }
+        },
+        {
+          "client_id": "136514478740-6rfprqcgcqantltl7mv8mj30u4j1mf97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQB8qmTUNd8YWGYJYt03VB0XpfleJbaFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136514478740-6rfprqcgcqantltl7mv8mj30u4j1mf97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
