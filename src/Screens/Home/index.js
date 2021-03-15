@@ -43,14 +43,14 @@ export default Home = ({ navigation }) => {
     var randColorIndex = 0;
 
     useEffect(() => {
-        if (flag == 0 || flag == 1) {
-            dispatch(getPublicUserApiData());
-            dispatch(getAllCategoryRequest());
-            setFlag(flag + 1);
-            setStore(state?.data?.data?.data["procash/top-stores"]?.categories[0]);
-            setOffer(state?.data?.data?.data["procash/top-offers"]?.categories[0]);
-            setDeal(state?.data?.data?.data["procash/top-deals"]?.categories[0]);
-        }
+        dispatch(getPublicUserApiData());
+        dispatch(getAllCategoryRequest());
+    }, [])
+
+    useEffect(() => {
+        setStore(state?.data?.data?.data["procash/top-stores"]?.categories[0]);
+        setOffer(state?.data?.data?.data["procash/top-offers"]?.categories[0]);
+        setDeal(state?.data?.data?.data["procash/top-deals"]?.categories[0]);
     }, [state]);
 
     const getStoreDataById = (id) => {
